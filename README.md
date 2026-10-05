@@ -7,7 +7,10 @@ VisitFlow is a MERN application for registering visitors, issuing secure digital
 - JWT authentication and role-protected API routes
 - MongoDB models for users, visitors, appointments, passes, and check logs
 - QR pass generation and scan endpoint which toggles check-in/check-out
-- React dashboard with searchable visitors, activity feed, and a responsive visitor-registration flow
+- React dashboard with live API integration, client-side search/filtering, JWT persistence, role-based views, and a responsive visitor-registration flow
+- Public visitor registration/portal with a `visitor` role
+- Multipart visitor photo upload stored as a data URL for the demo
+- Browser camera QR scanning with the native BarcodeDetector API
 - Seed data for a working demo
 
 ## Run locally
@@ -46,7 +49,7 @@ Demo administrator: `admin@visitflow.test` / `Pass@123`.
 
 ## Next production integrations
 
-The app includes a local notification outbox for email/SMS events. To deliver real messages, wire the `notify` adapter in `server/src/index.js` to SMTP/SendGrid and Twilio using your own credentials. Camera-based scanning can be added by connecting a browser QR-scanner package to the existing `/api/passes/:code/scan` endpoint.
+The app includes a local notification outbox for email/SMS events. To deliver real messages, wire the `notify` adapter in `server/src/index.js` to SMTP/SendGrid and Twilio using your own credentials. Camera-based scanning is implemented in React with the browser BarcodeDetector API and connected to `/api/passes/:code/scan`. If a browser lacks BarcodeDetector support, the manual pass-code field remains available.
 
 ## Submission material
 
